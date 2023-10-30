@@ -5,16 +5,16 @@ import time
 # Specify the path to the "website" folder
 website_path = r'C:\Users\might\Downloads\test-upload-repo'
 
-# Store the initial modification times for each item
-initial_mod_times = {item: os.path.getmtime(os.path.join(website_path, item)) for item in os.listdir(website_path)}
+# Store the initial modification times for each file
+initial_mod_times = {item: os.path.getmtime(os.path.join(website_path, item)) for item in os.listdir(website_path) if os.path.isfile(os.path.join(website_path, item))}
 
 while True:
-    # Check the current modification times for each item
-    current_mod_times = {item: os.path.getmtime(os.path.join(website_path, item)) for item in os.listdir(website_path)}
+    # Check the current modification times for each file
+    current_mod_times = {item: os.path.getmtime(os.path.join(website_path, item)) for item in os.listdir(website_path) if os.path.isfile(os.path.join(website_path, item))}
 
     # Compare with the initial modification times
     if current_mod_times != initial_mod_times:
-        print("Changes detected in items inside the directory!")
+        print("Changes detected in files inside the directory!")
 
         # Change to the "website" directory
         os.chdir(website_path)
