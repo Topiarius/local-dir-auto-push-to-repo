@@ -5,16 +5,16 @@ import subprocess
 # Specify the path to the "website" folder
 website_path = r'C:\Users\might\Downloads\test-upload-repo'
 
-# Store the initial modification time
-initial_mod_time = os.path.getmtime(website_path)
+# Store the initial modification times for each item
+initial_mod_times = {item: os.path.getmtime(os.path.join(website_path, item)) for item in os.listdir(website_path)}
 
 while True:
-    # Check the current modification time
-    current_mod_time = os.path.getmtime(website_path)
+    # Check the current modification times for each item
+    current_mod_times = {item: os.path.getmtime(os.path.join(website_path, item)) for item in os.listdir(website_path)}
 
-    # Compare with the initial modification time
-    if current_mod_time != initial_mod_time:
-        print("Website folder has been modified!")
+    # Compare with the initial modification times
+    if current_mod_times != initial_mod_times:
+        print("Changes detected in items inside the directory!")
 
         # Change to the "website" directory
         os.chdir(website_path)
@@ -30,8 +30,8 @@ while True:
 
         print("Git commands executed successfully.")
 
-        # Update the initial modification time
-        initial_mod_time = current_mod_time
+        # Update the initial modification times
+        initial_mod_times = current_mod_times
 
     # Wait for a short interval before checking again (e.g., 1 second)
     time.sleep(1)
