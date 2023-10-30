@@ -3,7 +3,7 @@ import subprocess
 import time
 
 # Specify the path to the "website" folder
-website_path = r'C:\Users\might\Downloads\test-upload-repo'
+website_path = r'C:\YOUR\DIRECTORY\PATH'
 
 # Store the initial modification times for each file
 initial_mod_times = {item: os.path.getmtime(os.path.join(website_path, item)) for item in os.listdir(website_path) if os.path.isfile(os.path.join(website_path, item))}
