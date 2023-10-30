@@ -33,5 +33,8 @@ while True:
         # Update the initial modification times
         initial_mod_times = current_mod_times
 
+        # Introduce a cooldown period (e.g., 60 seconds)
+        time.sleep(60)
+
     # Wait for a short interval before checking again (e.g., 1 second)
     time.sleep(1)
